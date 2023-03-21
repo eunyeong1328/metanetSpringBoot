@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.net.URI;
 import java.util.Iterator;
@@ -29,6 +30,7 @@ public class UserController {
 
         if(user == null){
             throw new UserNotFoundException(String.format("ID[%s] not found",id));
+            //인위적으로 예외 발생 throw
         }
         return user;
     }
@@ -36,7 +38,7 @@ public class UserController {
 
     //이 uri 조회 시 방금 넣은 데이터 값 확인 가능
     @PostMapping("/users")
-    public ResponseEntity createUser(@RequestBody User user){
+    public ResponseEntity createUser(@Valid @RequestBody User user){
         User savedUser = service.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
