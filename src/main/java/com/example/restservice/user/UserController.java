@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.websocket.server.PathParam;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -45,6 +46,12 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
-//    값 조회
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id){
+        User user = service.deleteById(id);
+        if(user == null){
+            throw new UserNotFoundException(String.format("%s ID not found",id));
+        }
+    }
 
 }
