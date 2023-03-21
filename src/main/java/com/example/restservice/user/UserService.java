@@ -18,7 +18,7 @@ public class UserService {
         users.add(new User(3,"kosa",new Date()));
     }
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return users;
     }
 
@@ -30,4 +30,6 @@ public class UserService {
         }
         return null;
     }
+
+
 }
