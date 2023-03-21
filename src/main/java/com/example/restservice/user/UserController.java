@@ -1,9 +1,12 @@
 package com.example.restservice.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.websocket.server.PathParam;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,8 +27,18 @@ public class UserController {
         return service.findone(id);
     }
 
+    //이 uri 조회 시 방금 넣은 데이터 값 확인 가능
     @PostMapping("/users")
-    public User createUser(@RequestBody User user){
-        return service.save(user);
+    public ResponseEntity createUser(@RequestBody User user){
+        User savedUser = service.save(user);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
+
+//    값 조회
+
 }
