@@ -14,9 +14,9 @@ public class UserService {
     private static int userCount = 3;
 //3개의 데이터값 생성
     static { 
-        users.add(new User(1,"kosa",new Date()));
-        users.add(new User(2,"kosa",new Date()));
-        users.add(new User(3,"kosa",new Date()));
+        users.add(new User(1,"kosa",new Date(),"pass1","791919-111111"));
+        users.add(new User(2,"kosa",new Date(),"pass2","791919-111111"));
+        users.add(new User(3,"kosa",new Date(),"pass3","791919-111111"));
     }
 
     public List<User> findAll() {
