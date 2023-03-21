@@ -48,6 +48,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId> <!-- 회사 이름-->
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.4.3.Final</version><!-- 도메인 이름-->
+        </dependency>
     </dependencies>
 
     <build>
