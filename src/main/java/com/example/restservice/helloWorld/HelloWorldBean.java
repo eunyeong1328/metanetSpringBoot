@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //default 생성자 생성
 public class HelloWorldBean {
     private String mesage;
-
 }
