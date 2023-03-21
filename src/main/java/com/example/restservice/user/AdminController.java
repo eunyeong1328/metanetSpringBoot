@@ -39,12 +39,10 @@ public class AdminController {
     @GetMapping("/users/{id}")
     public MappingJacksonValue retrieveUser(@PathVariable int id){
         User user = service.findone(id);
-
+        //인위적으로 예외 발생 throw
         if(user == null){
             throw new UserNotFoundException(String.format("ID[%s] not found",id));
-            //인위적으로 예외 발생 throw
         }
-
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
                 .filterOutAllExcept("id", "name", "joinDate", "ssn");
 

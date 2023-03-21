@@ -1,15 +1,17 @@
 package com.example.restservice.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.net.URI;
-import java.util.Iterator;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -25,14 +27,15 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id){
+    public EntityModel<User> retrieveUser(@PathVariable int id){
         User user = service.findone(id);
 
         if(user == null){
             throw new UserNotFoundException(String.format("ID[%s] not found",id));
             //인위적으로 예외 발생 throw
         }
-        return user;
+        return EntityModel.of(user,
+                linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
     }
 
 

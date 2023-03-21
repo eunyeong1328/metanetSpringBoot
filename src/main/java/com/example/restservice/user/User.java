@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 //@JsonIgnoreProperties(value = {"password","ssn"})
-@JsonFilter("UserInfo") //UserInfo라고 필터
+//@JsonFilter("UserInfo") //UserInfo라고 필터
 public class User {
     private Integer id; //기본데이터형을 오브젝트로 변환
     @Size(min=2, message = "Name은 2글자 이상 입력하세요")
