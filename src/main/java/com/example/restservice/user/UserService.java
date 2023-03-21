@@ -30,6 +30,11 @@ public class UserService {
         }
         return null;
     }
-
-
+    public User save(User user){
+        if(user.getId() == null){
+            user.setId(++userCount);
+        }
+        users.add(user);
+        return user;
+    }
 }
