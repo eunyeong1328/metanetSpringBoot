@@ -24,8 +24,14 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id){
-        return service.findone(id);
+        User user = service.findone(id);
+
+        if(user == null){
+            throw new UserNotFoundException(String.format("ID[%s] not found",id));
+        }
+        return user;
     }
+
 
     //이 uri 조회 시 방금 넣은 데이터 값 확인 가능
     @PostMapping("/users")
