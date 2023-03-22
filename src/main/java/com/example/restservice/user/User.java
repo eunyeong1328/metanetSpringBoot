@@ -16,12 +16,13 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 //@JsonIgnoreProperties(value = {"password","ssn"})
 //@JsonFilter("UserInfo") //UserInfo라고 필터
 @Entity //entity 사용시 반드시 주시 설정
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue //1씩 증가/db에 따라 다르다(sql, 오라클)
@@ -33,6 +34,12 @@ public class User {
     private  String password;
     private  String ssn; //주민등록번호
     @OneToMany(mappedBy = "user")
-    private List<Post> post;
-
+    private List<Post> posts;
+    public User(Integer id, String name, Date joinDate, String password, String ssn) {
+        this.id = id;
+        this.name = name;
+        this.joinDate = joinDate;
+        this.password = password;
+        this.ssn = ssn;
+    }
 }
