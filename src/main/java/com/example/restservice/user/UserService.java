@@ -30,6 +30,10 @@ public class UserService {
         return userMapper.findUser(id);
     }
 
+    public void save(User user){
+        userMapper.createUser(user);
+    }
+
 //    public User findone(int id){
 //        for(User user : users){
 //            if(user.getId() == id){

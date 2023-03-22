@@ -11,6 +11,10 @@
     <select id="findUser" resultType="User" parameterType="int">
         select * from users where id = #{id}
     </select>
+
+    <insert id="createUser" parameterType="User">
+        insert into users values(user_seq.nextval,#{name},sysdate,#{password},#{ssn})
+    </insert>
     
 </mapper>
 
