@@ -2,9 +2,12 @@ package com.example.restservice.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.swing.text.html.Option;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +40,18 @@ public class UserJpaController {
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id){
         userRepository.deleteById(id);
+    }
+
+    //db에 데이터값 저장
+    @PostMapping("/users")
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        User savedUser = userRepository.save(user);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build(); //201이아니라 200
     }
 }
