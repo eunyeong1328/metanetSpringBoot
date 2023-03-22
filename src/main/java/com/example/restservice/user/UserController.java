@@ -38,7 +38,6 @@ public class UserController {
                 linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
     }
 
-
     //이 uri 조회 시 방금 넣은 데이터 값 확인 가능
     @PostMapping("/users")
     public ResponseEntity createUser(@Valid @RequestBody User user){
