@@ -11,8 +11,10 @@ import lombok.Singular;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -30,4 +32,7 @@ public class User {
     //@JsonIgnore //예민한 값 노출 안되게 한다.
     private  String password;
     private  String ssn; //주민등록번호
+    @OneToMany(mappedBy = "user")
+    private List<Post> post;
+
 }
