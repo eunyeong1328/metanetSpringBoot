@@ -15,7 +15,10 @@
     <insert id="createUser" parameterType="User">
         insert into users values(user_seq.nextval,#{name},sysdate,#{password},#{ssn})
     </insert>
-    
+
+    <delete id="deleteUser" parameterType="int">
+        delete from users where id = #{id}
+    </delete>
 </mapper>
 
 
