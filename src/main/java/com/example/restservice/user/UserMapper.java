@@ -13,4 +13,6 @@ public interface UserMapper {
     public void deleteUser(int id);
 
     public List<Post> findAllPost(int id);
+
+    public void savePost(Post post);
 }

@@ -79,22 +79,25 @@ public class UserJpaController {
 //        return user.get().getPosts();
 //    }
 //
-//    @PostMapping("/users/{id}/posts")
-//    public ResponseEntity<Post> createPost(@PathVariable int id, @RequestBody Post post){
-//        Optional<User> user = userRepository.findById(id);
-//        if(!user.isPresent()) { //optional객체일 때만 사용
-//            throw new UserNotFoundException(String.format("ID[%s] not found",id));
-//        }
-//
-//        post.setUser(user.get());
-//        Post savePost = postRepository.save(post);
-//
+    @PostMapping("/users/{id}/posts")
+    public void createPost(@PathVariable int id, @RequestBody Post post){
+        //Optional<User> user = userRepository.findById(id);
+       User user = userService.findUser(id);
+        if(user == null) { //optional객체일 때만 사용
+            throw new UserNotFoundException(String.format("ID[%s] not found",id));
+        }
+
+        //post.setUser(user.get());
+        //Post savePost = postRepository.save(post);
+        post.setUser_id(id);
+        userService.savePost(post);
+
 //        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 //                .path("/{id}")
 //                .buildAndExpand(savePost.getId())
 //                .toUri();
-//        return ResponseEntity.created(location).build();
-//    }
+       // return ResponseEntity.created(location).build();
+    }
 }
 //usertable을 쓸 때만 user사용
 //post 값만 사용 - postRepository 만 사용

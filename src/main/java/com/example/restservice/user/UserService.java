@@ -41,6 +41,10 @@ public class UserService {
         return userMapper.findAllPost(id);
     }
 
+    public void savePost(Post post) {
+        userMapper.savePost(post);
+    }
+
 
 //    public User findone(int id){
 //        for(User user : users){

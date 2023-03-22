@@ -42,6 +42,10 @@
         and u.id = #{id}
     </select>
 
+    <insert id="savePost"  parameterType="com.example.restservice.user.Post" >
+        insert into post values(post_seq.nextval,#{description}, #{user_id})
+    </insert>
+<!--    parameterMap="postMap"-->
 </mapper>
 
 
