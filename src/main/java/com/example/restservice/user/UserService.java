@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 //    private static List<User> users = new ArrayList<>();
 
 //    private static int userCount = 3;
@@ -24,6 +24,10 @@ public class UserService {
 
     public List<User> findAll() {
         return userMapper.findAllUsers();
+    }
+
+    public User findUser(int id){
+        return userMapper.findUser(id);
     }
 
 //    public User findone(int id){

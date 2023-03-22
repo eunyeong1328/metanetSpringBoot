@@ -12,12 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
-    @Id
-    @GeneratedValue
+//    @Id
+//    @GeneratedValue
     private Integer id;
     private String description;
 
     //@ManyToOne(fetch = FetchType.LAZY)//user의 값이 필요한 시점에만 User의 데이터값 출력
     //@JsonIgnore //연관 관계시 굳이 필요하지 않은 데이터를 출력할 때 사용
-    private User user;
+    //private User user;
+    private int user_id;
 }

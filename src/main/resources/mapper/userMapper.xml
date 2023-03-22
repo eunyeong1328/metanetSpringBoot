@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.restservice.user.UserMapper">
-    <select id = "findAllUsers" resultType="User">
-        select * from user;
+    <select id="findAllUsers" resultType="User">
+        select * from users
+    </select>
+
+    <select id="findUser" resultType="User" parameterType="int">
+        select * from users where id = #{id}
     </select>
     
 </mapper>

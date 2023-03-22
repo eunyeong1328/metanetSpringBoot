@@ -36,6 +36,6 @@ spring:
 #        format_sql : true
 #    defer-datasource-initialization: true
 
-  mybatis:
-    mapper-locations: mapper/*.xml
-    type-aliases-package: com.example.restservice.user
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.restservice.user
