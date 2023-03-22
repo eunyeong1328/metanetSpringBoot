@@ -37,6 +37,10 @@ public class UserService {
     public void deleteUser(int id){
         userMapper.deleteUser(id);
     }
+    public  List<Post> findAllPost(int id){
+        return userMapper.findAllPost(id);
+    }
+
 
 //    public User findone(int id){
 //        for(User user : users){

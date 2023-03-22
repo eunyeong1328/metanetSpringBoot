@@ -15,8 +15,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/jpa")
+//@RequestMapping("/jpa")
 public class UserJpaController {
+
+    @Autowired
+    public UserService userService;
 
 //    @Autowired
 //    private UserRepository userRepository;
@@ -58,6 +61,15 @@ public class UserJpaController {
 //        return ResponseEntity.created(location).build(); //201이아니라 200
 //    }
 //
+
+    @GetMapping("/users/{id}/posts")
+    public List<Post> findAllPost(@PathVariable int id){
+       //Optional<User> user = userRepository.findById(id);
+        System.out.println("데이터 값 확인: " + id);
+        List<Post> post = userService.findAllPost(id);
+        System.out.println("데이터 값 확인: " + post);
+        return post;
+    }
 //    @GetMapping("/users/{id}/posts")
 //    public List<Post> retrieveAllPostByUser(@PathVariable int id){
 //        Optional<User> user = userRepository.findById(id);
