@@ -19,13 +19,13 @@ import java.util.List;
 
 //@JsonIgnoreProperties(value = {"password","ssn"})
 //@JsonFilter("UserInfo") //UserInfo라고 필터
-@Entity //entity 사용시 반드시 주시 설정
+//@Entity //entity 사용시 반드시 주시 설정
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue //1씩 증가/db에 따라 다르다(sql, 오라클)
+    //@Id
+    //@GeneratedValue //1씩 증가/db에 따라 다르다(sql, 오라클)
     private Integer id; //기본데이터형을 오브젝트로 변환
     @Size(min=2, message = "Name은 2글자 이상 입력하세요")
     private String name;
@@ -33,13 +33,13 @@ public class User {
     //@JsonIgnore //예민한 값 노출 안되게 한다.
     private  String password;
     private  String ssn; //주민등록번호
-    @OneToMany(mappedBy = "user")
+    //@OneToMany(mappedBy = "user")
     private List<Post> posts;
-    public User(Integer id, String name, Date joinDate, String password, String ssn) {
-        this.id = id;
-        this.name = name;
-        this.joinDate = joinDate;
-        this.password = password;
-        this.ssn = ssn;
-    }
+//    public User(Integer id, String name, Date joinDate, String password, String ssn) {
+//        this.id = id;
+//        this.name = name;
+//        this.joinDate = joinDate;
+//        this.password = password;
+//        this.ssn = ssn;
+//    }
 }

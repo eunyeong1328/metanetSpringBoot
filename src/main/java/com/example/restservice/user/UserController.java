@@ -26,35 +26,35 @@ public class UserController {
         return service.findAll();
     }
 
-    @GetMapping("/users/{id}")
-    public EntityModel<User> retrieveUser(@PathVariable int id){
-        User user = service.findone(id);
-
-        if(user == null){
-            throw new UserNotFoundException(String.format("ID[%s] not found",id));
-            //인위적으로 예외 발생 throw
-        }
-        return EntityModel.of(user,
-                linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
-    }
-
-    //이 uri 조회 시 방금 넣은 데이터 값 확인 가능
-    @PostMapping("/users")
-    public ResponseEntity createUser(@Valid @RequestBody User user){
-        User savedUser = service.save(user);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedUser.getId())//save한 후에 넘어옴
-                .toUri();
-        return ResponseEntity.created(location).build();
-    }
-
-    @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable int id){
-        User user = service.deleteById(id);
-        if(user == null){
-            throw new UserNotFoundException(String.format("%s ID not found",id));
-        }
-    }
+//    @GetMapping("/users/{id}")
+//    public EntityModel<User> retrieveUser(@PathVariable int id){
+//        User user = service.findone(id);
+//
+//        if(user == null){
+//            throw new UserNotFoundException(String.format("ID[%s] not found",id));
+//            //인위적으로 예외 발생 throw
+//        }
+//        return EntityModel.of(user,
+//                linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
+//    }
+//
+//    //이 uri 조회 시 방금 넣은 데이터 값 확인 가능
+//    @PostMapping("/users")
+//    public ResponseEntity createUser(@Valid @RequestBody User user){
+//        User savedUser = service.save(user);
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+//                .path("/{id}")
+//                .buildAndExpand(savedUser.getId())//save한 후에 넘어옴
+//                .toUri();
+//        return ResponseEntity.created(location).build();
+//    }
+//
+//    @DeleteMapping("/users/{id}")
+//    public void deleteUser(@PathVariable int id){
+//        User user = service.deleteById(id);
+//        if(user == null){
+//            throw new UserNotFoundException(String.format("%s ID not found",id));
+//        }
+//    }
 }

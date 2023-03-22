@@ -64,7 +64,6 @@ public class UserJpaController {
         if(!user.isPresent()) { //optional객체일 때만 사용
             throw new UserNotFoundException(String.format("ID[%s] not found",id));
         }
-
         return user.get().getPosts();
     }
 
