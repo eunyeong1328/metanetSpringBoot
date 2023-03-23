@@ -10,7 +10,7 @@
         <result column="joindate" property="joinDate"/>
         <result column="password" property="password"/>
         <result column="ssn" property="ssn"/>
-        <collection column="postMap" property="posts" />
+        <collection column="posts" property="posts"  resultMap="postMap"/>
     </resultMap>
 
     <resultMap id="postMap" type="com.example.restservice.user.Post">
@@ -35,8 +35,8 @@
         delete from users where id = #{id}
     </delete>
 
-    <select id="findAllPost" resultMap="postMap" parameterType="int" >
-        select p.id, p.description, p.user_id
+    <select id="findAllPost" resultMap="userMap" parameterType="int" >
+        select *
         from users u, post p
         where u.id = p.user_id
         and u.id = #{id}
